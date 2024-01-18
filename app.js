@@ -38,10 +38,17 @@ const db = new sqlite3.Database('./db.sqlite');
 //     }
 // })
 
-db.get('SELECT * FROM AverageTemp WHERE year = 2023', (error, row)=>{
+// db.get('SELECT * FROM AverageTemp WHERE year = 2023', (error, row)=>{
+//     if(error){
+//         console.log(error)
+//         return;
+//     }
+//     console.log(row)
+// })
+db.each('SELECT * FROM AverageTemp WHERE year = 2023', (error, row)=>{
     if(error){
         console.log(error)
         return;
     }
-    console.log(row)
+    console.log(`${row.year} had a temperature of ${row.temperature} `)
 })
